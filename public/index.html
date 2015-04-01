@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="templateApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A Bootstrap + Angular Template">
+    <meta name="author" content="XIE Qianyue">
+    <title>Home</title>
+    <link href="/css/bootstrap.min.css " rel="stylesheet" />
+    <base href="/">
+</head>
+
+<body>
+    <div style="margin:100px;">
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container">
+                <a class="navbar-brand" href="/">Express HTML</a>
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="/about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="view-container">
+            <div ng-view class="view-frame"></div>
+        </div>
+    </div>
+    <script src="/scripts/externe/angular.js"></script>
+    <script src="/scripts/externe/angular-route.js"></script>
+    <script src="/scripts/app-angular.js"></script>
+</body>
+
+</html>
