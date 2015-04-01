@@ -1,5 +1,6 @@
 var express = require('express');
-var app = express();
+// make it easy to test
+var app = module.exports = express();
 
 // serve the static files
 app.use(express.static('public'));

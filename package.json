@@ -1,19 +1,21 @@
 {
-    "name": "express-angular-starter",
-    "version": "0.1.0",
-    "description": "a starter project of express 4X + angular 1.3",
-    "main": "app.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [
+  "name": "express-angular-starter",
+  "version": "0.1.0",
+  "description": "a starter project of express 4X + angular 1.3",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
     "node",
     "express",
     "angular"
   ],
-    "author": "xie qianyue",
-    "license": "MIT",
-    "dependencies": {
-        "express": "^4.12.3"
-    }
+  "author": "xie qianyue",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.12.3",
+    "mocha": "^2.2.1",
+    "should": "^5.2.0"
+  }
 }
