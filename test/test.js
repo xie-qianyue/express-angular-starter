@@ -2,6 +2,7 @@ var should = require('should');
 var http = require('http');
 var app = require(__dirname + '/../app.js');
 var server;
+var pathDev = 'localhost';
 var portTest = 3001;
 
 describe('app', function () {
@@ -16,9 +17,9 @@ describe('app', function () {
         })
     });
 
-    after(function (done) {
+    after(function () {
         server.close();
-        done();
+        // done();
     });
 
     it('should exist', function (done) {
@@ -26,8 +27,15 @@ describe('app', function () {
         done();
     });
 
-    it('should be listening at localhost:' + portTest, function (done) {
-        http.get('http://localhost:3001/', function (res) {
+    it('should be listening at ' + pathDev + ':' + portTest, function (done) {
+        http.get('http://' + pathDev + ':' + portTest + '/', function (res) {
+            res.statusCode.should.eql(200);
+            done();
+        });
+    });
+
+    it('should be listening at ' + pathDev + ':' + portTest + '/about', function (done) {
+        http.get('http://' + pathDev + ':' + portTest + '/about', function (res) {
             res.statusCode.should.eql(200);
             done();
         });
