@@ -1,0 +1,19 @@
+<div id="todoView" ng-controller="todoController">
+    <h1>todos</h1>
+    <div id="todoSample">
+        <div class="panel panel-default">
+            <ul class="list-group">
+                <li ng-repeat="todo in todos" class="list-group-item">
+                    <input type="checkbox" ng-model="todo.done" />
+                    <span class="">{{todo.text}}</span>
+                </li>
+            </ul>
+        </div>
+        <form>
+            <input class="add-input" placeholder="I need to..." type="text" ng-model="formTodoText" ng-model-instant />
+            <button class="add-btn" ng-click="addTodo()">Add</button>
+        </form>
+        <span class="emphasis">{{getTotalTodos()}}</span> left
+        <button class="clear-btn" ng-click="clearCompleted()">Clear completed</button>
+    </div>
+</div>

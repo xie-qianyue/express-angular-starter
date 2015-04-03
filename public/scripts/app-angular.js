@@ -1,8 +1,8 @@
-var templateApp = angular.module('templateApp', [
+var app = angular.module('templateApp', [
     'ngRoute'
 ]);
 
-templateApp.config(['$routeProvider', '$locationProvider',
+app.config(['$routeProvider', '$locationProvider',
   function ($routeProvider, $locationProvider) {
         'use strict';
 
@@ -11,6 +11,10 @@ templateApp.config(['$routeProvider', '$locationProvider',
         $routeProvider.
         when('/about', {
             templateUrl: '/views/about.html'
+        }).
+        when('/todo', {
+            templateUrl: '/views/todo.html',
+            controller: 'todoController'
         }).
         otherwise({
             templateUrl: '/views/main.html'
