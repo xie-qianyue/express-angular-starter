@@ -7,3 +7,15 @@ A starter project of express 4X and angular 1.3
 This project is based on my sub project of [Node Tutorial](https://github.com/xie-qianyue/NodeTutorial).
 
 Here is the [Live Demo](https://express-angular-starter.herokuapp.com/).
+
+## Install
+Run the command `npm install` for install.
+
+## Test
+Test is supported by [Mocha](http://mochajs.org/) and [shouldjs](https://github.com/shouldjs/should.js). Today the test covers the url connections. Run the command `npm test` for the test.
+
+## Todo
+- a page of todo list example
+
+## License
+MIT
