@@ -5,24 +5,3 @@ body {
     color: #4d4d4d;
     font-weight: 300;
 }
-
-#todoView h1 {
-    width: 100%;
-    font-size: 100px;
-    font-weight: 100;
-    text-align: center;
-    color: #9d9d9d;
-    -webkit-text-rendering: optimizeLegibility;
-    -moz-text-rendering: optimizeLegibility;
-    -ms-text-rendering: optimizeLegibility;
-    text-rendering: optimizeLegibility;
-}
-
-#todoSample {
-    min-width: 230px;
-    max-width: 550px;
-    background: #fff;
-    margin: 0 auto;
-    position: relative;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
-}
