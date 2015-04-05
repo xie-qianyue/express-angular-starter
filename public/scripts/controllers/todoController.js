@@ -86,7 +86,7 @@ app.controller('todoController', ['$scope', '$filter', function ($scope, $filter
     };
 
     $scope.removeTodo = function (todo) {
-        todos.pop(todo);
+        todos.splice(todos.indexOf(todo), 1);
     };
 
     $scope.toggleCompleted = function (todo, completed) {
