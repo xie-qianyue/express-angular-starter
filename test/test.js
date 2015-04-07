@@ -1,3 +1,5 @@
+/*global require, describe, before, after, it, __dirname */
+
 var should = require('should');
 var http = require('http');
 var app = require(__dirname + '/../app.js');
@@ -14,7 +16,7 @@ describe('app', function () {
             } else {
                 done();
             }
-        })
+        });
     });
 
     after(function () {
@@ -41,4 +43,12 @@ describe('app', function () {
         });
     });
 
+    it('should be listening at ' + pathDev + ':' + portTest + '/todo', function (done) {
+        http.get('http://' + pathDev + ':' + portTest + '/todo', function (res) {
+            http.get('http://' + pathDev + ':' + portTest + '/todo', function (res) {
+                res.statusCode.should.eql(200);
+                done();
+            });
+        });
+    });
 });
