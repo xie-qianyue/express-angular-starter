@@ -4,7 +4,9 @@
 
 A starter project of express 4X and angular 1.3
 
-This project is based on my sub project of [Node Tutorial](https://github.com/xie-qianyue/NodeTutorial).
+This project is based on my sub project of [Node Tutorial](https://github.com/xie-qianyue/NodeTutorial).  
+
+The todo sample is based on this [todomvc tutorial](http://todomvc.com/examples/angularjs/#/).
 
 Here is the [Live Demo](https://express-angular-starter.herokuapp.com/).
 
