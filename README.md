@@ -17,6 +17,7 @@ Run the command `npm install` for install.
 Test is supported by [Mocha](http://mochajs.org/) and [shouldjs](https://github.com/shouldjs/should.js). Today the test covers the url connections. Run the command `npm test` for the test.
 
 ## Todo
+- add e2e test
 - add service in todo sample
 
 ## License
