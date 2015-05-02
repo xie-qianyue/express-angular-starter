@@ -1,16 +1,14 @@
-app.controller('todoController', ['$scope', '$filter', function ($scope, $filter) {
+app.controller('mongoTodoController', ['$scope', '$filter','todoService', function ($scope, $filter, todoService) {
 
-    // use local storage
-    var todos = $scope.todos = [
-    {
-        title: 'Express 4X',
-        completed: false
-    },
-    {
-        title: 'Angular 1.3',
-        completed: false
-    }
-    ];
+    // use angualr service and mongodb 
+    var todos = $scope.todos = [];
+    todoService.getTodo()
+        .then(function(data){
+            todos = $scope.todos = data;
+        },
+        function(errorMsg){
+            console.log(errorMsg);
+        });
 
     $scope.newTodo = '';
     $scope.editedTodo = null;
@@ -30,7 +28,9 @@ app.controller('todoController', ['$scope', '$filter', function ($scope, $filter
             return;
         }
 
-        todos.push(newTodo);
+        todoService.createTodo(newTodo);
+
+        
         $scope.newTodo = '';
         // $scope.saving = true;
         // store.insert(newTodo)
@@ -40,6 +40,10 @@ app.controller('todoController', ['$scope', '$filter', function ($scope, $filter
         // .finally(function () {
         //     $scope.saving = false;
         // });
+    };
+
+    $scope.removeTodo = function (todo) {
+        todos.splice(todos.indexOf(todo), 1);
     };
 
     $scope.editTodo = function (todo) {
@@ -84,10 +88,6 @@ app.controller('todoController', ['$scope', '$filter', function ($scope, $filter
         $scope.editedTodo = null;
         $scope.originalTodo = null;
         $scope.reverted = true;
-    };
-
-    $scope.removeTodo = function (todo) {
-        todos.splice(todos.indexOf(todo), 1);
     };
 
     $scope.toggleCompleted = function (todo, completed) {
