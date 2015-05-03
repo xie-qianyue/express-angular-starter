@@ -1,6 +1,6 @@
 app.controller('mongoTodoController', ['$scope', '$filter','todoService', function ($scope, $filter, todoService) {
 
-    // use angualr service and mongodb 
+    // retrieve data from mongodb, by angular service
     var todos = $scope.todos = [];
     todoService.getTodo()
         .then(function(data){

@@ -10,7 +10,7 @@ var todoSchema = new mongoose.Schema({
 	completed: Boolean
 });
 
-// define model
+// define model with a pre-exist collection 'todo'
 var Todo = mongoose.model('Todo', todoSchema, 'todo');
 
 api.get('/todos', function (req, res) {
