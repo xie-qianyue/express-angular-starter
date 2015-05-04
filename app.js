@@ -13,6 +13,7 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 // serve the static files
 app.use(express.static('public'));
+// match the api url with a prefix '/api'
 app.use('/api', api);
 app.use('/', webRouter);
 

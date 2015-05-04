@@ -4,7 +4,7 @@ app.factory('todoService', ['$http', '$q', function($http, $q){
 	var service = {
 		getTodo: getTodo,
 		createTodo: createTodo,
-		deletetodo: deletetodo		
+		deleteTodo: deleteTodo		
 	}
 
 	// return a promise object
@@ -40,8 +40,19 @@ app.factory('todoService', ['$http', '$q', function($http, $q){
 		return def.promise;
 	}
 
-	function deletetodo() {
+	function deleteTodo(todoId) {
+		var def = $q.defer();
 
+		 $http.delete('/api/todos/' + todoId)
+			.success(function(data){
+				def.resolve(data);
+			})
+			.error(function(data) {
+				console.log('Error: ' + data);
+				def.reject('Failed to delete todo with id : ' + todoId);
+			});
+
+		return def.promise;
 	}
 
 	return service;

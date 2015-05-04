@@ -39,7 +39,13 @@ app.controller('mongoTodoController', ['$scope', '$filter','todoService', functi
     };
 
     $scope.removeTodo = function (todo) {
-        todos.splice(todos.indexOf(todo), 1);
+        todoService.deleteTodo(todo._id)
+            .then(function(data){
+                todos = $scope.todos = data;
+            },
+            function(errorMsg){
+                console.log(errorMsg);
+            });
     };
 
     $scope.editTodo = function (todo) {
@@ -70,13 +76,6 @@ app.controller('mongoTodoController', ['$scope', '$filter','todoService', functi
         todos[todos.indexOf($scope.originalTodo)] = todo;
 
         $scope.editedTodo = null;
-        // store[todo.title ? 'put' : 'delete'](todo)
-        // .then(function success() {}, function error() {
-        //     todo.title = $scope.originalTodo.title;
-        // })
-        // .finally(function () {
-        //     $scope.editedTodo = null;
-        // });
     };
 
     $scope.revertEdits = function (todo) {
@@ -90,10 +89,6 @@ app.controller('mongoTodoController', ['$scope', '$filter','todoService', functi
         if (angular.isDefined(completed)) {
             todo.completed = completed;
         }
-        // store.put(todo, todos.indexOf(todo))
-        // .then(function success() {}, function error() {
-        //     todo.completed = !todo.completed;
-        // });
     };
 
     $scope.markAll = function (completed) {
