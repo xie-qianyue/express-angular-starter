@@ -22,24 +22,20 @@ app.controller('mongoTodoController', ['$scope', '$filter','todoService', functi
     $scope.addTodo = function () {
         var newTodo = {
             title: $scope.newTodo.trim(),
-            completed: false
         };
         if (!newTodo.title) {
             return;
         }
 
-        todoService.createTodo(newTodo);
+        todoService.createTodo(newTodo)
+            .then(function(data){
+                todos = $scope.todos = data;
+            },
+            function(errorMsg){
+                console.log(errorMsg);
+            });
 
-        
         $scope.newTodo = '';
-        // $scope.saving = true;
-        // store.insert(newTodo)
-        // .then(function success() {
-        //     $scope.newTodo = '';
-        // })
-        // .finally(function () {
-        //     $scope.saving = false;
-        // });
     };
 
     $scope.removeTodo = function (todo) {

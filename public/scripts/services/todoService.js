@@ -25,13 +25,19 @@ app.factory('todoService', ['$http', '$q', function($http, $q){
 	}
 
 	function createTodo(todo) {
+
+		var def = $q.defer();
+
 		$http.post('/api/todos', todo)
 			.success(function(data){
-
+				def.resolve(data);
 			})
 			.error(function(data) {
 				console.log('Error: ' + data);
+				def.reject('Failed to add todo : ' + todo.title);
 			});
+
+		return def.promise;
 	}
 
 	function deletetodo() {

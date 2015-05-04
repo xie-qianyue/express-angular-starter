@@ -23,4 +23,27 @@ api.get('/todos', function (req, res) {
     });
 });
 
+api.post('/todos', function (req, res) {
+
+    Todo.create({
+    	title : req.body.title,
+    	completed : false
+    }, function(err, todo) {
+
+    	debugger;
+    	if (err) {
+    		res.send(err);
+		}
+
+        // get and return all the todos after you create another
+        Todo.find(function(err, todos) {
+            if (err) {
+            	res.send(err);
+            }
+            console.log(todos);		
+            res.json(todos);
+        });
+    });
+});
+
 module.exports = api;

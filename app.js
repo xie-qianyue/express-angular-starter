@@ -1,5 +1,6 @@
 var express = require('express');
 var errorHandler = require('errorhandler');
+var bodyParser = require('body-parser');
 
 // make it easy to test
 var app = module.exports = express();
@@ -8,9 +9,10 @@ var api = require('./routes/api');
 
 app.set('port', process.env.PORT || 3000);
 
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 // serve the static files
 app.use(express.static('public'));
-
 app.use('/api', api);
 app.use('/', webRouter);
 
