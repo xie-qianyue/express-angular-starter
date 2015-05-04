@@ -44,11 +44,9 @@ describe('app', function () {
     });
 
     it('should be listening at ' + pathDev + ':' + portTest + '/localTodo', function (done) {
-        http.get('http://' + pathDev + ':' + portTest + '/localTodo', function (res) {
-            http.get('http://' + pathDev + ':' + portTest + '/localTodo', function (res) {
-                res.statusCode.should.eql(200);
-                done();
-            });
+        http.get('http://' + pathDev + ':' + portTest + '/localTodo', function (res) {         
+            res.statusCode.should.eql(200);
+            done();
         });
     });
 });
