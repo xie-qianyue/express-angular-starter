@@ -18,7 +18,7 @@ Test is supported by [Mocha](http://mochajs.org/) and [shouldjs](https://github.
 
 ## Todo
 - add e2e test
-- add service in todo sample
+- add service in todo sample - DONE
 - add mongodb service
 
 ## License
