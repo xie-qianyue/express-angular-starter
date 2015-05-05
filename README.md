@@ -11,7 +11,7 @@ The todo sample is based on this [todomvc tutorial](http://todomvc.com/examples/
 Travis CI is used for continuous integration.
 
 ## Live Demo
-Here is a [Live Demo](https://express-angular-starter.herokuapp.com/). This live demo is deployed on [Heroku](https://www.heroku.com/), using its [mongolab](https://mongolab.com/) addon.
+Here is a [Live Demo](https://express-angular-starter.herokuapp.com/). This demo is deployed on [Heroku](https://www.heroku.com/), using its [mongolab](https://mongolab.com/) addon.
 
 
 ## Install
