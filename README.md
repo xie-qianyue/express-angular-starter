@@ -8,7 +8,11 @@ This project is based on my sub project of [Node Tutorial](https://github.com/xi
 
 The todo sample is based on this [todomvc tutorial](http://todomvc.com/examples/angularjs/#/).
 
-Here is the [Live Demo](https://express-angular-starter.herokuapp.com/).
+Travis CI is used for continuous integration.
+
+## Live Demo
+Here is a [Live Demo](https://express-angular-starter.herokuapp.com/). This live demo is on [Heroku](https://www.heroku.com/), using its [mongolab](https://mongolab.com/) addon.
+
 
 ## Install
 Run the command `npm install` for install.
@@ -19,7 +23,7 @@ Test is supported by [Mocha](http://mochajs.org/) and [shouldjs](https://github.
 ## Todo
 - add e2e test
 - add service in todo sample - DONE
-- add mongodb service
+- add mongodb service - DONE
 
 ## License
 MIT
