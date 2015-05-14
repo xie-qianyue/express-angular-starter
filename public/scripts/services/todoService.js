@@ -1,13 +1,15 @@
 app.factory('todoService', ['$http', '$q', function($http, $q){
+	'use strict';
 
 	// service interface
 	var service = {
 		getTodo: getTodo,
 		createTodo: createTodo,
-		deleteTodo: deleteTodo		
-	}
+		deleteTodo: deleteTodo,
+		editTodo: editTodo
+	};
 
-	// return a promise object
+	// Return a promise object.
 	function getTodo(){
 		
 		var def = $q.defer();
@@ -53,6 +55,14 @@ app.factory('todoService', ['$http', '$q', function($http, $q){
 			});
 
 		return def.promise;
+	}
+
+	// This function doesn't return a promise object.
+	function editTodo(todo) {
+		$http.put('/api/todos', todo)
+			.error(function(data) {
+				console.log('Error: ' + data);
+			});
 	}
 
 	return service;

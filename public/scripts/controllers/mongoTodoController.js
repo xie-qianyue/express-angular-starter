@@ -1,6 +1,7 @@
 app.controller('mongoTodoController', ['$scope', '$filter','todoService', function ($scope, $filter, todoService) {
+    'use strict';
 
-    // retrieve data from mongodb, by angular service
+    // Retrieve data from mongodb, by angular service.
     var todos = $scope.todos = [];
     todoService.getTodo()
         .then(function(data){
@@ -13,7 +14,7 @@ app.controller('mongoTodoController', ['$scope', '$filter','todoService', functi
     $scope.newTodo = '';
     $scope.editedTodo = null;
 
-    // watch remaining count
+    // Watch remaining count.
     $scope.$watch('todos', function () {
         $scope.remainingCount = $filter('filter')(todos, { completed: false }).length;
         $scope.completedCount = todos.length - $scope.remainingCount;
@@ -49,6 +50,7 @@ app.controller('mongoTodoController', ['$scope', '$filter','todoService', functi
             });
     };
 
+    // Make css style effective.
     $scope.editTodo = function (todo) {
         $scope.editedTodo = todo;
         // Clone the original todo to restore it on demand.
@@ -63,16 +65,20 @@ app.controller('mongoTodoController', ['$scope', '$filter','todoService', functi
             return;
         }
         $scope.saveEvent = event;
+        
         if ($scope.reverted) {
             // Todo edits were reverted-- don't save.
             $scope.reverted = null;
             return;
         }
+        
         todo.title = todo.title.trim();
         if (todo.title === $scope.originalTodo.title) {
             $scope.editedTodo = null;
             return;
-        }        
+        }
+
+        todoService.editTodo(todo);
 
         $scope.editedTodo = null;
     };

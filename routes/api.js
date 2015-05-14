@@ -4,13 +4,13 @@ var api = express.Router();
 
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost');
 
-// define shcema
+// Define the shcema.
 var todoSchema = new mongoose.Schema({
 	title: String,
 	completed: Boolean
 });
 
-// define model with a pre-exist collection 'todo'
+// Define model with a pre-exist collection 'todo'.
 var Todo = mongoose.model('Todo', todoSchema, 'todo');
 
 api.get('/todos', function (req, res) {
@@ -23,7 +23,7 @@ api.get('/todos', function (req, res) {
 	});
 });
 
-// create a todo item
+// Create a todo item.
 api.post('/todos', function (req, res) {
 	Todo.create({
 		title : req.body.title,
@@ -33,7 +33,7 @@ api.post('/todos', function (req, res) {
 			res.send(err);
 		}
 
-        // get and return all the todos after create
+        // Get and return all the todos after create.
         Todo.find(function(err, todos) {
         	if (err) {
         		res.send(err);
@@ -43,7 +43,7 @@ api.post('/todos', function (req, res) {
     });
 });
 
-// delete a todo item
+// Delete a todo item.
 api.delete('/todos/:todo_id', function(req, res) {
 	Todo.remove({
 		_id : req.params.todo_id
@@ -52,7 +52,7 @@ api.delete('/todos/:todo_id', function(req, res) {
 			res.send(err);
 		}
 
-        // get and return all the todos after delete
+        // Get and return all the todos after delete.
         Todo.find(function(err, todos) {
         	if (err) {
         		res.send(err);
@@ -60,6 +60,19 @@ api.delete('/todos/:todo_id', function(req, res) {
         	res.json(todos);
         });
     });
+});
+
+// Modify a todo title
+// After update, it doesn't return a result list. 
+// The refresh of the list is done by angular.
+api.put('/todos', function(req, res) {
+	Todo.update({_id: req.body._id}, 
+		{title: req.body.title},
+		function(err) {
+			if (err) {
+				res.send(err);
+			}
+		});
 });
 
 module.exports = api;

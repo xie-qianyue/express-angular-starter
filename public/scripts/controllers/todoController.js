@@ -1,6 +1,7 @@
 app.controller('todoController', ['$scope', '$filter', function ($scope, $filter) {
+    'use strict';
 
-    // use local storage
+    // Use local storage.
     var todos = $scope.todos = [
     {
         title: 'Express 4X',
@@ -34,6 +35,7 @@ app.controller('todoController', ['$scope', '$filter', function ($scope, $filter
         $scope.newTodo = '';
     };
 
+    // Make css style effective.
     $scope.editTodo = function (todo) {
         $scope.editedTodo = todo;
         // Clone the original todo to restore it on demand.
