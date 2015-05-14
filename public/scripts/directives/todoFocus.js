@@ -1,6 +1,6 @@
 /*global angular */
 /**
-* Directive that places focus on the element it is applied to when the
+* Directive that places focus on the element which it is applied to when the
 * expression it binds to evaluates to true
 */
 angular.module('todoApp')
