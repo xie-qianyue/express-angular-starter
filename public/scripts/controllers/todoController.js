@@ -32,14 +32,6 @@ app.controller('todoController', ['$scope', '$filter', function ($scope, $filter
 
         todos.push(newTodo);
         $scope.newTodo = '';
-        // $scope.saving = true;
-        // store.insert(newTodo)
-        // .then(function success() {
-        //     $scope.newTodo = '';
-        // })
-        // .finally(function () {
-        //     $scope.saving = false;
-        // });
     };
 
     $scope.editTodo = function (todo) {
@@ -70,13 +62,6 @@ app.controller('todoController', ['$scope', '$filter', function ($scope, $filter
         todos[todos.indexOf($scope.originalTodo)] = todo;
 
         $scope.editedTodo = null;
-        // store[todo.title ? 'put' : 'delete'](todo)
-        // .then(function success() {}, function error() {
-        //     todo.title = $scope.originalTodo.title;
-        // })
-        // .finally(function () {
-        //     $scope.editedTodo = null;
-        // });
     };
 
     $scope.revertEdits = function (todo) {
@@ -94,10 +79,6 @@ app.controller('todoController', ['$scope', '$filter', function ($scope, $filter
         if (angular.isDefined(completed)) {
             todo.completed = completed;
         }
-        // store.put(todo, todos.indexOf(todo))
-        // .then(function success() {}, function error() {
-        //     todo.completed = !todo.completed;
-        // });
     };
 
     $scope.markAll = function (completed) {

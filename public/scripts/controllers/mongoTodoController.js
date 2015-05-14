@@ -13,6 +13,7 @@ app.controller('mongoTodoController', ['$scope', '$filter','todoService', functi
     $scope.newTodo = '';
     $scope.editedTodo = null;
 
+    // watch remaining count
     $scope.$watch('todos', function () {
         $scope.remainingCount = $filter('filter')(todos, { completed: false }).length;
         $scope.completedCount = todos.length - $scope.remainingCount;
@@ -71,9 +72,7 @@ app.controller('mongoTodoController', ['$scope', '$filter','todoService', functi
         if (todo.title === $scope.originalTodo.title) {
             $scope.editedTodo = null;
             return;
-        }
-
-        todos[todos.indexOf($scope.originalTodo)] = todo;
+        }        
 
         $scope.editedTodo = null;
     };
