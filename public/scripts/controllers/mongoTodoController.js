@@ -92,7 +92,12 @@ app.controller('mongoTodoController', ['$scope', '$filter','todoService', functi
 
     $scope.toggleCompleted = function (todo, completed) {
         if (angular.isDefined(completed)) {
+            // Toggle all todo items by markAll
             todo.completed = completed;
+            todoService.completeTodo(todo);
+        } else {
+            // Toggle one item
+            todoService.completeTodo(todo);
         }
     };
 

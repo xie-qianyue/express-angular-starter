@@ -6,7 +6,8 @@ app.factory('todoService', ['$http', '$q', function($http, $q){
 		getTodo: getTodo,
 		createTodo: createTodo,
 		deleteTodo: deleteTodo,
-		editTodo: editTodo
+		editTodo: editTodo,
+		completeTodo: completeTodo
 	};
 
 	// Return a promise object.
@@ -60,6 +61,13 @@ app.factory('todoService', ['$http', '$q', function($http, $q){
 	// This function doesn't return a promise object.
 	function editTodo(todo) {
 		$http.put('/api/todos', todo)
+			.error(function(data) {
+				console.log('Error: ' + data);
+			});
+	}
+
+	function completeTodo(todo) {
+		$http.put('/api/todos/completed', todo)
 			.error(function(data) {
 				console.log('Error: ' + data);
 			});
