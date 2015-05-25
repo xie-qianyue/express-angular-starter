@@ -29,25 +29,27 @@ describe('app', function () {
         done();
     });
 
-    browser = new Browser();
+    var browser = new Browser();
 
     it('should be listening at ' + pathDev + ':' + portTest, function (done) {
         browser.visit('http://' + pathDev + ':' + portTest + '/', function () {
-            browser.statusCode.should.eql(200);
+            // Asserts that selected element(s) have the expected text content. 
+            browser.assert.text('title', 'Express Angular Starter');
             done();
         });
     });
 
     it('should be listening at ' + pathDev + ':' + portTest + '/about', function (done) {
-        browser.visit('http://' + pathDev + ':' + portTest + '/about', function (res) {
-            browser.statusCode.should.eql(200);
+        browser.visit('http://' + pathDev + ':' + portTest + '/about', function () {
+            // Asserts that one element matching selection exists.
+            browser.assert.element('div .jumbotron');
             done();
         });
     });
 
     it('should be listening at ' + pathDev + ':' + portTest + '/localTodo', function (done) {
-        browser.visit('http://' + pathDev + ':' + portTest + '/localTodo', function (res) {         
-            res.statusCode.should.eql(200);
+        browser.visit('http://' + pathDev + ':' + portTest + '/localTodo', function () {                     
+            browser.assert.text('h1', 'todos');
             done();
         });
     });
