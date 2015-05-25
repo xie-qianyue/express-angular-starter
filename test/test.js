@@ -1,7 +1,7 @@
 /*global require, describe, before, after, it, __dirname */
 
 var should = require('should');
-var http = require('http');
+var Browser = require('zombie');
 var app = require(__dirname + '/../app.js');
 var server;
 var pathDev = 'localhost';
@@ -29,22 +29,24 @@ describe('app', function () {
         done();
     });
 
+    browser = new Browser();
+
     it('should be listening at ' + pathDev + ':' + portTest, function (done) {
-        http.get('http://' + pathDev + ':' + portTest + '/', function (res) {
-            res.statusCode.should.eql(200);
+        browser.visit('http://' + pathDev + ':' + portTest + '/', function () {
+            browser.statusCode.should.eql(200);
             done();
         });
     });
 
     it('should be listening at ' + pathDev + ':' + portTest + '/about', function (done) {
-        http.get('http://' + pathDev + ':' + portTest + '/about', function (res) {
-            res.statusCode.should.eql(200);
+        browser.visit('http://' + pathDev + ':' + portTest + '/about', function (res) {
+            browser.statusCode.should.eql(200);
             done();
         });
     });
 
     it('should be listening at ' + pathDev + ':' + portTest + '/localTodo', function (done) {
-        http.get('http://' + pathDev + ':' + portTest + '/localTodo', function (res) {         
+        browser.visit('http://' + pathDev + ':' + portTest + '/localTodo', function (res) {         
             res.statusCode.should.eql(200);
             done();
         });
