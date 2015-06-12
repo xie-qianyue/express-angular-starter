@@ -2,28 +2,28 @@
     <header>
         <h1>todos</h1>
         <form ng-submit="addTodo()">
-            <input id="new-todo" placeholder="What needs to be done?" ng-model="newTodo" autofocus>
+            <input id="new-todo" placeholder="What needs to be done?" ng-model="todoCtrl.newTodo" autofocus>
         </form>
     </header>
-    <section id="main" ng-show="todos.length" ng-cloak>
-        <input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
+    <section id="main" ng-show="todoCtrl.todos.length" ng-cloak>
+        <input id="toggle-all" type="checkbox" ng-model="todoCtrl.allChecked" ng-click="todoCtrl.markAll(allChecked)">
         <label for="toggle-all">Mark all as complete</label>
         <ul id="todo-list">
-            <li ng-repeat="todo in todos | filter:statusFilter track by $index" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
+            <li ng-repeat="todo in todoCtrl.todos | filter:statusFilter track by $index" ng-class="{completed: todo.completed, editing: todo == todoCtrl.editedTodo}">
                 <div class="view">
                     <input class="toggle" type="checkbox" ng-model="todo.completed" ng-change="toggleCompleted(todo)">
-                    <label ng-dblclick="editTodo(todo)">{{todo.title}}</label>
-                    <button class="destroy" ng-click="removeTodo(todo)"></button>
+                    <label ng-dblclick="todoCtrl.editTodo(todo)">{{todo.title}}</label>
+                    <button class="destroy" ng-click="todoCtrl.removeTodo(todo)"></button>
                 </div>
-                <form ng-submit="saveEdits(todo, 'submit')">
-                    <input class="edit" ng-trim="false" ng-model="todo.title" todo-escape="revertEdits(todo)" ng-blur="saveEdits(todo, 'blur')" todo-focus="todo == editedTodo">
+                <form ng-submit="todoCtrl.saveEdits(todo, 'submit')">
+                    <input class="edit" ng-trim="false" ng-model="todo.title" todo-escape="todoCtrl.revertEdits(todo)" ng-blur="todoCtrl.saveEdits(todo, 'blur')" todo-focus="todo == todoCtrl.editedTodo">
                 </form>
             </li>
         </ul>
     </section>
     <footer id="footer" ng-show="todos.length" ng-cloak>
         <span id="todo-count"><strong>{{remainingCount}}</strong>
-            <ng-pluralize count="remainingCount" when="{ one: 'item left', other: 'items left' }"></ng-pluralize>
+            <ng-pluralize count="todoCtrl.remainingCount" when="{ one: 'item left', other: 'items left' }"></ng-pluralize>
         </span>    
     </footer>
 </div>
