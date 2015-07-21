@@ -1,8 +1,8 @@
-app.controller('todoController', ['$scope', '$filter', function ($scope, $filter) {
+app.controller('todoController', ['$scope', '$filter', function ($filter) {
     'use strict';
 
     // Use local storage.
-    var todos = $scope.todos = [
+    var todos = this.todos = [
     {
         title: 'Express 4X',
         completed: false
@@ -13,18 +13,18 @@ app.controller('todoController', ['$scope', '$filter', function ($scope, $filter
     }
     ];
 
-    $scope.newTodo = '';
-    $scope.editedTodo = null;
+    this.newTodo = '';
+    this.editedTodo = null;
 
-    $scope.$watch('todos', function () {
-        $scope.remainingCount = $filter('filter')(todos, { completed: false }).length;
-        $scope.completedCount = todos.length - $scope.remainingCount;
-        $scope.allChecked = !$scope.remainingCount;
+    this.$watch('todos', function () {
+        this.remainingCount = $filter('filter')(todos, { completed: false }).length;
+        this.completedCount = todos.length - this.remainingCount;
+        this.allChecked = !this.remainingCount;
     }, true);
 
-    $scope.addTodo = function () {
+    this.addTodo = function () {
         var newTodo = {
-            title: $scope.newTodo.trim(),
+            title: this.newTodo.trim(),
             completed: false
         };
         if (!newTodo.title) {
@@ -32,61 +32,61 @@ app.controller('todoController', ['$scope', '$filter', function ($scope, $filter
         }
 
         todos.push(newTodo);
-        $scope.newTodo = '';
+        this.newTodo = '';
     };
 
     // Make css style effective.
-    $scope.editTodo = function (todo) {
-        $scope.editedTodo = todo;
+    this.editTodo = function (todo) {
+        this.editedTodo = todo;
         // Clone the original todo to restore it on demand.
-        $scope.originalTodo = angular.extend({}, todo);
+        this.originalTodo = angular.extend({}, todo);
     };
 
-    $scope.saveEdits = function (todo, event) {
+    this.saveEdits = function (todo, event) {
         // Blur events are automatically triggered after the form submit event.
         // This does some unfortunate logic handling to prevent saving twice.
-        if (event === 'blur' && $scope.saveEvent === 'submit') {
-            $scope.saveEvent = null;
+        if (event === 'blur' && this.saveEvent === 'submit') {
+            this.saveEvent = null;
             return;
         }
-        $scope.saveEvent = event;
-        if ($scope.reverted) {
+        this.saveEvent = event;
+        if (this.reverted) {
             // Todo edits were reverted-- don't save.
-            $scope.reverted = null;
+            this.reverted = null;
             return;
         }
         todo.title = todo.title.trim();
-        if (todo.title === $scope.originalTodo.title) {
-            $scope.editedTodo = null;
+        if (todo.title === this.originalTodo.title) {
+            this.editedTodo = null;
             return;
         }
 
-        todos[todos.indexOf($scope.originalTodo)] = todo;
+        todos[todos.indexOf(this.originalTodo)] = todo;
 
-        $scope.editedTodo = null;
+        this.editedTodo = null;
     };
 
-    $scope.revertEdits = function (todo) {
-        todos[todos.indexOf(todo)] = $scope.originalTodo;
-        $scope.editedTodo = null;
-        $scope.originalTodo = null;
-        $scope.reverted = true;
+    this.revertEdits = function (todo) {
+        todos[todos.indexOf(todo)] = this.originalTodo;
+        this.editedTodo = null;
+        this.originalTodo = null;
+        this.reverted = true;
     };
 
-    $scope.removeTodo = function (todo) {
+    this.removeTodo = function (todo) {
         todos.splice(todos.indexOf(todo), 1);
     };
 
-    $scope.toggleCompleted = function (todo, completed) {
+    this.toggleCompleted = function (todo, completed) {
         if (angular.isDefined(completed)) {
             todo.completed = completed;
         }
     };
 
-    $scope.markAll = function (completed) {
+    this.markAll = function (completed) {
         todos.forEach(function (todo) {
             if (todo.completed !== completed) {
-                $scope.toggleCompleted(todo, completed);
+                this.toggleCompleted(todo, completed);
             }
         });
     };

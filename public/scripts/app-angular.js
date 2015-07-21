@@ -13,8 +13,8 @@ app.config(['$routeProvider', '$locationProvider',
             templateUrl: '/views/about.html'
         }).
         when('/localTodo', {
-            templateUrl: '/views/todo.html',
-            controller: 'todoController'
+            templateUrl: '/views/todo.html',            
+            controllerAs: 'todoCtrl'
         }).
         when('/mongoTodo', {
             templateUrl: '/views/todo.html',
