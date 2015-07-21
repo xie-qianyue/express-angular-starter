@@ -6,7 +6,7 @@
         </form>
     </header>
     <section id="main" ng-show="todoCtrl.todos.length" ng-cloak>
-        <input id="toggle-all" type="checkbox" ng-model="todoCtrl.allChecked" ng-click="todoCtrl.markAll(allChecked)">
+        <input id="toggle-all" type="checkbox" ng-model="todoCtrl.allChecked" ng-click="todoCtrl.markAll(todoCtrl.allChecked)">
         <label for="toggle-all">Mark all as complete</label>
         <ul id="todo-list">
             <li ng-repeat="todo in todoCtrl.todos | filter:statusFilter track by $index" ng-class="{completed: todo.completed, editing: todo == todoCtrl.editedTodo}">
@@ -21,8 +21,8 @@
             </li>
         </ul>
     </section>
-    <footer id="footer" ng-show="todos.length" ng-cloak>
-        <span id="todo-count"><strong>{{remainingCount}}</strong>
+    <footer id="footer" ng-show="todoCtrl.todos.length" ng-cloak>
+        <span id="todo-count"><strong>{{todoCtrl.remainingCount}}</strong>
             <ng-pluralize count="todoCtrl.remainingCount" when="{ one: 'item left', other: 'items left' }"></ng-pluralize>
         </span>    
     </footer>
