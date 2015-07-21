@@ -1,30 +1,36 @@
-app.controller('todoController', ['$scope', '$filter', function ($filter) {
+// Implicit Annotation
+// Careful: If you plan to minify your code, your service names will get renamed and break your app.
+app.controller('todoController', function ($scope, $filter) {
     'use strict';
 
+    var todoList = this;
+
     // Use local storage.
-    var todos = this.todos = [
-    {
-        title: 'Express 4X',
-        completed: false
-    },
-    {
-        title: 'Angular 1.3',
-        completed: false
-    }
+    var todos = todoList.todos = [
+        {
+            title: 'Express 4X',
+            completed: false
+        },
+        {
+            title: 'Angular 1.3',
+            completed: false
+        }
     ];
 
-    this.newTodo = '';
-    this.editedTodo = null;
+    todoList.newTodo = '';
+    todoList.editedTodo = null;
 
-    this.$watch('todos', function () {
-        this.remainingCount = $filter('filter')(todos, { completed: false }).length;
-        this.completedCount = todos.length - this.remainingCount;
-        this.allChecked = !this.remainingCount;
+    $scope.$watch(function () {
+            return todos;
+        }, function () {
+            todoList.remainingCount = $filter('filter')(todos, { completed: false }).length;
+            todoList.completedCount = todos.length - todoList.remainingCount;
+            todoList.allChecked = !todoList.remainingCount;
     }, true);
 
-    this.addTodo = function () {
+    todoList.addTodo = function () {
         var newTodo = {
-            title: this.newTodo.trim(),
+            title: todoList.newTodo.trim(),
             completed: false
         };
         if (!newTodo.title) {
@@ -32,62 +38,62 @@ app.controller('todoController', ['$scope', '$filter', function ($filter) {
         }
 
         todos.push(newTodo);
-        this.newTodo = '';
+        todoList.newTodo = '';
     };
 
     // Make css style effective.
-    this.editTodo = function (todo) {
-        this.editedTodo = todo;
+    todoList.editTodo = function (todo) {
+        todoList.editedTodo = todo;
         // Clone the original todo to restore it on demand.
-        this.originalTodo = angular.extend({}, todo);
+        todoList.originalTodo = angular.extend({}, todo);
     };
 
-    this.saveEdits = function (todo, event) {
+    todoList.saveEdits = function (todo, event) {
         // Blur events are automatically triggered after the form submit event.
         // This does some unfortunate logic handling to prevent saving twice.
-        if (event === 'blur' && this.saveEvent === 'submit') {
-            this.saveEvent = null;
+        if (event === 'blur' && todoList.saveEvent === 'submit') {
+            todoList.saveEvent = null;
             return;
         }
-        this.saveEvent = event;
-        if (this.reverted) {
+        todoList.saveEvent = event;
+        if (todoList.reverted) {
             // Todo edits were reverted-- don't save.
-            this.reverted = null;
+            todoList.reverted = null;
             return;
         }
         todo.title = todo.title.trim();
-        if (todo.title === this.originalTodo.title) {
-            this.editedTodo = null;
+        if (todo.title === todoList.originalTodo.title) {
+            todoList.editedTodo = null;
             return;
         }
 
-        todos[todos.indexOf(this.originalTodo)] = todo;
+        todos[todos.indexOf(todoList.originalTodo)] = todo;
 
-        this.editedTodo = null;
+        todoList.editedTodo = null;
     };
 
-    this.revertEdits = function (todo) {
-        todos[todos.indexOf(todo)] = this.originalTodo;
-        this.editedTodo = null;
-        this.originalTodo = null;
-        this.reverted = true;
+    todoList.revertEdits = function (todo) {
+        todos[todos.indexOf(todo)] = todoList.originalTodo;
+        todoList.editedTodo = null;
+        todoList.originalTodo = null;
+        todoList.reverted = true;
     };
 
-    this.removeTodo = function (todo) {
+    todoList.removeTodo = function (todo) {
         todos.splice(todos.indexOf(todo), 1);
     };
 
-    this.toggleCompleted = function (todo, completed) {
+    todoList.toggleCompleted = function (todo, completed) {
         if (angular.isDefined(completed)) {
             todo.completed = completed;
         }
     };
 
-    this.markAll = function (completed) {
+    todoList.markAll = function (completed) {
         todos.forEach(function (todo) {
             if (todo.completed !== completed) {
-                this.toggleCompleted(todo, completed);
+                todoList.toggleCompleted(todo, completed);
             }
         });
     };
-}]);
+});
