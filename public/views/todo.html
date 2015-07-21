@@ -1,7 +1,7 @@
 <div id="todoapp">
     <header>
         <h1>todos</h1>
-        <form ng-submit="addTodo()">
+        <form ng-submit="todoCtrl.addTodo()">
             <input id="new-todo" placeholder="What needs to be done?" ng-model="todoCtrl.newTodo" autofocus>
         </form>
     </header>
@@ -11,7 +11,7 @@
         <ul id="todo-list">
             <li ng-repeat="todo in todoCtrl.todos | filter:statusFilter track by $index" ng-class="{completed: todo.completed, editing: todo == todoCtrl.editedTodo}">
                 <div class="view">
-                    <input class="toggle" type="checkbox" ng-model="todo.completed" ng-change="toggleCompleted(todo)">
+                    <input class="toggle" type="checkbox" ng-model="todo.completed" ng-change="todoCtrl.toggleCompleted(todo)">
                     <label ng-dblclick="todoCtrl.editTodo(todo)">{{todo.title}}</label>
                     <button class="destroy" ng-click="todoCtrl.removeTodo(todo)"></button>
                 </div>
