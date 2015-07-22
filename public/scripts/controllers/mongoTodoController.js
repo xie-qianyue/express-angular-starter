@@ -1,29 +1,33 @@
 app.controller('mongoTodoController', ['$scope', '$filter','todoService', function ($scope, $filter, todoService) {
     'use strict';
 
+    var todoList = this;
+
     // Retrieve data from mongodb, by angular service.
-    var todos = $scope.todos = [];
+    var todos = todoList.todos = [];
     todoService.getTodo()
         .then(function(data){
-            todos = $scope.todos = data;
+            todos = todoList.todos = data;
         },
         function(errorMsg){
             console.log(errorMsg);
         });
 
-    $scope.newTodo = '';
-    $scope.editedTodo = null;
+    todoList.newTodo = '';
+    todoList.editedTodo = null;
 
     // Watch remaining count.
-    $scope.$watch('todos', function () {
-        $scope.remainingCount = $filter('filter')(todos, { completed: false }).length;
-        $scope.completedCount = todos.length - $scope.remainingCount;
-        $scope.allChecked = !$scope.remainingCount;
+    $scope.$watch(function () {
+            return todos;
+        }, function () {
+            todoList.remainingCount = $filter('filter')(todos, { completed: false }).length;
+            todoList.completedCount = todos.length - todoList.remainingCount;
+            todoList.allChecked = !todoList.remainingCount;
     }, true);
 
-    $scope.addTodo = function () {
+    todoList.addTodo = function () {
         var newTodo = {
-            title: $scope.newTodo.trim(),
+            title: todoList.newTodo.trim(),
         };
         if (!newTodo.title) {
             return;
@@ -31,19 +35,19 @@ app.controller('mongoTodoController', ['$scope', '$filter','todoService', functi
 
         todoService.createTodo(newTodo)
             .then(function(data){
-                todos = $scope.todos = data;
+                todos = todoList.todos = data;
             },
             function(errorMsg){
                 console.log(errorMsg);
             });
 
-        $scope.newTodo = '';
+        todoList.newTodo = '';
     };
 
-    $scope.removeTodo = function (todo) {
+    todoList.removeTodo = function (todo) {
         todoService.deleteTodo(todo._id)
             .then(function(data){
-                todos = $scope.todos = data;
+                todos = todoList.todos = data;
             },
             function(errorMsg){
                 console.log(errorMsg);
@@ -51,46 +55,46 @@ app.controller('mongoTodoController', ['$scope', '$filter','todoService', functi
     };
 
     // Make css style effective.
-    $scope.editTodo = function (todo) {
-        $scope.editedTodo = todo;
+    todoList.editTodo = function (todo) {
+        todoList.editedTodo = todo;
         // Clone the original todo to restore it on demand.
-        $scope.originalTodo = angular.extend({}, todo);
+        todoList.originalTodo = angular.extend({}, todo);
     };
 
-    $scope.saveEdits = function (todo, event) {
+    todoList.saveEdits = function (todo, event) {
         // Blur events are automatically triggered after the form submit event.
         // This does some unfortunate logic handling to prevent saving twice.
-        if (event === 'blur' && $scope.saveEvent === 'submit') {
-            $scope.saveEvent = null;
+        if (event === 'blur' && todoList.saveEvent === 'submit') {
+            todoList.saveEvent = null;
             return;
         }
-        $scope.saveEvent = event;
+        todoList.saveEvent = event;
         
-        if ($scope.reverted) {
+        if (todoList.reverted) {
             // Todo edits were reverted-- don't save.
-            $scope.reverted = null;
+            todoList.reverted = null;
             return;
         }
         
         todo.title = todo.title.trim();
-        if (todo.title === $scope.originalTodo.title) {
-            $scope.editedTodo = null;
+        if (todo.title === todoList.originalTodo.title) {
+            todoList.editedTodo = null;
             return;
         }
 
         todoService.editTodo(todo);
 
-        $scope.editedTodo = null;
+        todoList.editedTodo = null;
     };
 
-    $scope.revertEdits = function (todo) {
-        todos[todos.indexOf(todo)] = $scope.originalTodo;
-        $scope.editedTodo = null;
-        $scope.originalTodo = null;
-        $scope.reverted = true;
+    todoList.revertEdits = function (todo) {
+        todos[todos.indexOf(todo)] = todoList.originalTodo;
+        todoList.editedTodo = null;
+        todoList.originalTodo = null;
+        todoList.reverted = true;
     };
 
-    $scope.toggleCompleted = function (todo, completed) {
+    todoList.toggleCompleted = function (todo, completed) {
         if (angular.isDefined(completed)) {
             // Toggle all todo items by markAll
             todo.completed = completed;
@@ -101,10 +105,10 @@ app.controller('mongoTodoController', ['$scope', '$filter','todoService', functi
         }
     };
 
-    $scope.markAll = function (completed) {
+    todoList.markAll = function (completed) {
         todos.forEach(function (todo) {
             if (todo.completed !== completed) {
-                $scope.toggleCompleted(todo, completed);
+                todoList.toggleCompleted(todo, completed);
             }
         });
     };

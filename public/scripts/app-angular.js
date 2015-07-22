@@ -14,13 +14,14 @@ app.config(['$routeProvider', '$locationProvider',
         }).
         when('/localTodo', {
             templateUrl: '/views/todo.html',            
-            controllerAs: 'todoCtrl'
+            controllerAs: 'todoCtrl',
+            controller: 'todoController'
         }).
         when('/mongoTodo', {
             templateUrl: '/views/todo.html',
+            controllerAs: 'todoCtrl',
             controller: 'mongoTodoController'
         }).
-
         otherwise({
             templateUrl: '/views/main.html'
         });
