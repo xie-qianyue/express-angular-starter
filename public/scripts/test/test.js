@@ -1,8 +1,19 @@
-describe('Array', function(){
-  describe('#indexOf()', function(){
-    it('should return -1 when the value is not present', function(){
-      assert.equal(-1, [1,2,3].indexOf(5));
-      assert.equal(-1, [1,2,3].indexOf(0));
-    })
-  })
-})
+describe('todoController', function(){
+	beforeEach(module('todoApp'));
+
+	describe('addTodo', function(){
+		it('should add a todo item in the todo list', inject(function($controller, $rootScope){
+			scope = $rootScope.$new();
+			var myController = $controller('todoController', {
+          		$scope: scope
+     		});
+
+			myController.newTodo = 'test';
+			myController.addTodo();
+
+			var testTodo = myController.todos.pop();
+			testTodo.title.should.equal('test');
+			testTodo.completed.should.equal(false);
+		}));
+	});
+});
