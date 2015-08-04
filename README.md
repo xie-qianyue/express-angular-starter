@@ -18,10 +18,13 @@ Here is a [Live Demo](https://express-angular-starter.herokuapp.com/). This demo
 Run the command `npm install` for install.
 
 ## Test
-Test is supported by [Mocha](http://mochajs.org/) and [shouldjs](https://github.com/shouldjs/should.js). Today the test covers the url connections. Run the command `npm test` for the test.
+Unit test is supported by [KARMA](http://karma-runner.github.io/0.13/index.html), [Mocha](http://mochajs.org/), [chaijs](http://chaijs.com/) and [phantomjs](http://phantomjs.org/).
+The E2E test is supported by Mocha and [shouldjs](https://github.com/shouldjs/should.js) and [Zombiejs](http://zombie.js.org/). 
+Today the E2E test covers the url connections. Run the command `npm test` for the E2E test.
 
 ## Todo
-- add e2e test
+- complete unit test
+- complete E2E test
 - add service in todo sample - DONE
 - add mongodb service - DONE
 
