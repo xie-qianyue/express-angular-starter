@@ -1,28 +1,32 @@
+'use strict';
+
 var app = angular.module('todoApp', [
-    'ngRoute'
+    'ui.router'
 ]);
 
-app.config(['$routeProvider', '$locationProvider',
-  function ($routeProvider, $locationProvider) {
-        'use strict';
+app.config(function ($stateProvider, $urlRouterProvider) {
 
-        $locationProvider.html5Mode(true);
+    $urlRouterProvider.otherwise("/");
 
-        $routeProvider.
-        when('/about', {
-            templateUrl: '/views/about.html'
-        }).
-        when('/localTodo', {
-            templateUrl: '/views/todo.html',            
-            controllerAs: 'todoCtrl',
-            controller: 'todoController'
-        }).
-        when('/mongoTodo', {
-            templateUrl: '/views/todo.html',
-            controllerAs: 'todoCtrl',
-            controller: 'mongoTodoController'
-        }).
-        otherwise({
-            templateUrl: '/views/main.html'
-        });
-  }]);
+    $stateProvider
+    .state('about', {
+        url:'/about',
+        templateUrl: '/views/about.html'
+    })
+    .state('localTodo', {
+        url:'/localTodo',
+        templateUrl: '/views/todo.html',            
+        controllerAs: 'todoCtrl',
+        controller: 'todoController'
+    })
+    .state('mongoTodo', {
+        url:'/mongoTodo',
+        templateUrl: '/views/todo.html',
+        controllerAs: 'todoCtrl',
+        controller: 'mongoTodoController'
+    })
+    .state('/', {
+        url:'/',
+        templateUrl: '/views/main.html'
+    });
+});
