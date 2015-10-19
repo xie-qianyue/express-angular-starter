@@ -39,16 +39,16 @@ describe('app', function () {
         });
     });
 
-    it('should be listening at ' + pathDev + ':' + portTest + '/about', function (done) {
-        browser.visit('http://' + pathDev + ':' + portTest + '/about', function () {
+    it('should be listening at ' + pathDev + ':' + portTest + '/#/about', function (done) {
+        browser.visit('http://' + pathDev + ':' + portTest + '/#/about', function () {
             // Asserts that one element matching selection exists.
             browser.assert.element('div .jumbotron');
             done();
         });
     });
 
-    it('should be listening at ' + pathDev + ':' + portTest + '/localTodo', function (done) {
-        browser.visit('http://' + pathDev + ':' + portTest + '/localTodo', function () {                     
+    it('should be listening at ' + pathDev + ':' + portTest + '/#/localTodo', function (done) {
+        browser.visit('http://' + pathDev + ':' + portTest + '/#/localTodo', function () {                     
             browser.assert.text('h1', 'todos');
             done();
         });
