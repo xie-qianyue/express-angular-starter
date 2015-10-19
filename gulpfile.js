@@ -18,7 +18,7 @@ gulp.task('movecss', function() {
     // var cssFilter = gulpFilter('*.css');
     var cssDest = './public/css'
 
-    return gulp.src(['./bower_components/bootstrap/dist/css/bootstrap.css'])
+    return gulp.src(['./bower_components/bootstrap/dist/css/bootstrap.min.css'])
         //.pipe(cssFilter)
         .pipe(gulp.dest(cssDest));
 });
