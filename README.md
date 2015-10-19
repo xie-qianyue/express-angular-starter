@@ -15,7 +15,9 @@ Here is a [Live Demo](https://express-angular-starter.herokuapp.com/). This demo
 
 
 ## Install
-Run the command `npm install` for install.
+* Run the command `npm install` for the server dependencies, maybe you need the administrator right with `sudo npm install`.
+* Run the command `bower install` for the client dependencies.
+* Move the dependencies : `gulp move`.
 
 ## Test
 Unit test is supported by [KARMA](http://karma-runner.github.io/0.13/index.html), [Mocha](http://mochajs.org/), [chaijs](http://chaijs.com/) and [phantomjs](http://phantomjs.org/).
