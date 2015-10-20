@@ -15,19 +15,16 @@ gulp.task('movejs', function() {
 
 gulp.task('movecss', function() {
 
-    // var cssFilter = gulpFilter('*.css');
     var cssDest = './public/css/externe'
 
     return gulp.src(['./bower_components/bootstrap/dist/css/bootstrap.min.css'])
-        //.pipe(cssFilter)
         .pipe(gulp.dest(cssDest));
 });
 
 gulp.task('beautify-js', function() {
     return gulp.src(['**/*.js', '!./node_modules/**', '!./bower_components/**', '!./public/scripts/externe/**'], {
-            base: './'
+            base: './' // save the original path 
         })
-        // return gulp.src('./server.js')
         .pipe(beautify())
         .pipe(gulp.dest('./'));
 });
