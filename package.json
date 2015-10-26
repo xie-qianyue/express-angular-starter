@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "node_modules/mocha/bin/mocha e2e_test/*.js"
+    "postinstall": "bower install && gulp move"
   },
   "keywords": [
     "node",
