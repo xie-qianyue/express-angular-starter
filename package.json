@@ -21,7 +21,8 @@
     "express": "^4.12.3",
     "gulp": "^3.9.0",
     "gulp-beautify": "^2.0.0",
-    "gulp-filter": "^3.0.1",    
+    "gulp-filter": "^3.0.1",
+    "main-bower-files": "^2.9.0",
     "mongoose": "4.0.2"
   },
   "devDependencies": {
@@ -30,7 +31,6 @@
     "karma-chai": "^0.1.0",
     "karma-mocha": "^0.2.0",
     "karma-phantomjs-launcher": "^0.2.0",
-    "main-bower-files": "^2.9.0",
     "mocha": "^2.2.1",
     "phantomjs": "^1.9.17",
     "should": "^5.2.0",
