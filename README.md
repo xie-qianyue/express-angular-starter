@@ -15,9 +15,10 @@ Here is a [Live Demo](https://express-angular-starter.herokuapp.com/). This demo
 
 
 ## Install
+* [mongoDB](https://www.mongodb.org/) is a precondiction. If you havn't installed mongoDB yet, follow this [guide](https://docs.mongodb.org/manual/installation/) to install it.
 * Run the command `npm install` for the server dependencies, maybe you need the administrator right with `sudo npm install`.
 * Run the command `bower install` for the client dependencies.
-* Move the dependencies : `gulp move`.
+* Move the resources(.js and .css) : `gulp move`.
 
 ## Test
 Unit test is supported by [KARMA](http://karma-runner.github.io/0.13/index.html), [Mocha](http://mochajs.org/), [chaijs](http://chaijs.com/) and [phantomjs](http://phantomjs.org/).
