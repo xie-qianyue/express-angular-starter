@@ -1,6 +1,6 @@
 // Implicit Annotation
 // Careful: If you plan to minify your code, your service names will get renamed and break your app.
-app.controller('todoController', function ($scope, $filter) {
+app.controller('todoController', ['$scope', '$filter', function ($scope, $filter) {
     'use strict';
 
     var todoList = this;
@@ -96,4 +96,4 @@ app.controller('todoController', function ($scope, $filter) {
             }
         });
     };
-});
+}]);
