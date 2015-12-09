@@ -23,7 +23,7 @@
     "gulp-beautify": "^2.0.0",
     "gulp-filter": "^3.0.1",
     "main-bower-files": "^2.9.0",
-    "mongoose": "4.0.2"
+    "mongoose": "^4.3.0"
   },
   "devDependencies": {
     "chai": "^3.2.0",
