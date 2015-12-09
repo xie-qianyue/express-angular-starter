@@ -2,7 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var api = express.Router();
 
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/todoDB');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost');
 
 // Define the shcema.
 var todoSchema = new mongoose.Schema({
