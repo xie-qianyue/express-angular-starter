@@ -10,6 +10,8 @@ The todo sample is based on this [todomvc tutorial](http://todomvc.com/examples/
 
 Travis CI is used for continuous integration.
 
+Here is a new starter [project](https://github.com/xie-qianyue/express-angular-es6-starter) rewritten in <strong>JavaScript 2015</strong>, also the the front part is transformed in <strong>component style</strong>.
+
 ## Live Demo
 Here is a [Live Demo](https://express-angular-starter.herokuapp.com/). This demo is deployed on [Heroku](https://www.heroku.com/), using its [mongolab](https://mongolab.com/) addon.
 
@@ -28,8 +30,8 @@ Today the E2E test covers the url connections. Run the command `npm test` for th
 ## Todo
 - complete unit test
 - complete E2E test
-- add service in todo sample - DONE
-- add mongodb service - DONE
+- <del>add service in todo sample</del>
+- <del>add mongodb service</del>
 
 ## License
 MIT
