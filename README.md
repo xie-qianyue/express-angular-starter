@@ -25,7 +25,9 @@ Here is a [Live Demo](https://express-angular-starter.herokuapp.com/). This demo
 ## Test
 Unit test is supported by [KARMA](http://karma-runner.github.io/0.13/index.html), [Mocha](http://mochajs.org/), [chaijs](http://chaijs.com/) and [phantomjs](http://phantomjs.org/).
 The E2E test is supported by Mocha and [shouldjs](https://github.com/shouldjs/should.js) and [Zombiejs](http://zombie.js.org/). 
-Today the E2E test covers the url connections. Run the command `npm test` for the E2E test.
+Today the E2E test covers the url connections. 
+* Run the command `npm test` for the E2E test.
+* Run the command `karma start` for the unit test.
 
 ## Todo
 - complete unit test
