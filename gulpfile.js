@@ -5,7 +5,7 @@ var beautify = require('gulp-beautify');
 
 gulp.task('movejs', function() {
 
-    var jsFilter = gulpFilter('*.js');
+    var jsFilter = gulpFilter(['angular.js', 'angular-ui-router.js']);
     var jsDest = './public/scripts/externe';
 
     return gulp.src(mainBowerFiles())
