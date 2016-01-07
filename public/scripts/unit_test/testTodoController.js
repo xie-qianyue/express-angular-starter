@@ -1,4 +1,4 @@
-describe('todoController', function(){
+describe('todoControllerTest', function(){
 	beforeEach(module('todoApp'));
 
 	describe('addTodo', function(){
