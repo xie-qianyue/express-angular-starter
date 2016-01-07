@@ -16,4 +16,20 @@ describe('todoController', function(){
 			testTodo.completed.should.equal(false);
 		}));
 	});
+	
+	describe('removeTodo', function(){
+		it('should remove a todo item in the todo list', inject(function($controller, $rootScope){
+			scope = $rootScope.$new();
+			var myController = $controller('todoController', {
+          		$scope: scope
+     		});
+			 
+			var testItem = {title: 'Test item', completed: false};
+			 
+			myController.todos.pop(testItem);
+			myController.removeTodo(testItem);
+			
+			myController.todos.length.should.equal(0);			
+		}));
+	});
 });
