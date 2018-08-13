@@ -10,14 +10,14 @@ The todo sample is based on this [todomvc tutorial](http://todomvc.com/examples/
 
 Travis CI is used for continuous integration.
 
-Here is a new starter [project](https://github.com/xie-qianyue/express-angular-es6-starter) rewritten in <strong>JavaScript 2015</strong>, also the the front part is transformed in <strong>component style</strong>.
+Here is a new starter [project](https://github.com/xie-qianyue/express-angular-es6-starter) rewritten in <strong>JavaScript 2015</strong>, also the front part is transformed in <strong>component style</strong>.
 
 ## Live Demo
 Here is a [Live Demo](https://express-angular-starter.herokuapp.com/). This demo is deployed on [Heroku](https://www.heroku.com/), using its [mongolab](https://mongolab.com/) addon.
 
 
 ## Install
-* [mongoDB](https://www.mongodb.org/) is a precondiction. If you havn't installed mongoDB yet, follow this [guide](https://docs.mongodb.org/manual/installation/) to install it.
+* [mongoDB](https://www.mongodb.org/) is a precondiction. If you haven't installed mongoDB yet, follow this [guide](https://docs.mongodb.org/manual/installation/) to install it.
 * Run the command `npm install` for the server dependencies, maybe you need the administrator right with `sudo npm install`.
 * Run the command `bower install` for the client dependencies.
 * Move the resources(.js and .css) : `gulp move`.
